@@ -1,28 +1,38 @@
 {
-  "name": "find-a-friend-api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:robrunodev/find-a-friend-api.git",
-  "author": "Rodrigo Bruno <ro_web1@hotmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "@fastify/cookie": "9.3.1",
-    "@fastify/jwt": "8.0.1",
-    "@prisma/client": "5.15.1",
-    "bcryptjs": "2.4.3",
-    "dayjs": "1.11.11",
-    "dotenv": "16.4.5",
-    "fastify": "4.28.0",
-    "module-alias": "2.2.3",
-    "zod": "3.23.8"
-  },
-  "devDependencies": {
-    "@rocketseat/eslint-config": "2.2.2",
-    "@types/node": "20.14.8",
-    "prisma": "5.15.1",
-    "tsup": "8.1.0",
-    "tsx": "4.15.7",
-    "typescript": "5.5.2",
-    "vite-tsconfig-paths": "4.3.2"
-  }
+    "name": "find-a-friend-api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:robrunodev/find-a-friend-api.git",
+    "author": "Rodrigo Bruno <ro_web1@hotmail.com>",
+    "scripts": {
+        "dev": "tsx watch src/server.ts"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@fastify/cookie": "9.3.1",
+        "@fastify/jwt": "8.0.1",
+        "@prisma/client": "5.15.1",
+        "bcryptjs": "2.4.3",
+        "dayjs": "1.11.11",
+        "dotenv": "16.4.5",
+        "fastify": "4.28.0",
+        "module-alias": "2.2.3",
+        "zod": "3.23.8"
+    },
+    "devDependencies": {
+        "@rocketseat/eslint-config": "2.2.2",
+        "@types/node": "20.14.8",
+        "eslint": "8.57.0",
+        "eslint-config-standard-with-typescript": "43.0.1",
+        "eslint-plugin-import": "2.29.1",
+        "eslint-plugin-n": "16.6.2",
+        "eslint-plugin-promise": "6.2.0",
+        "eslit": "6.0.0",
+        "prettier": "3.3.2",
+        "prisma": "5.15.1",
+        "tsup": "8.1.0",
+        "tsx": "4.15.7",
+        "typescript": "5.5.2",
+        "vite-tsconfig-paths": "4.3.2"
+    }
 }
