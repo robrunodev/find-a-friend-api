@@ -4,6 +4,9 @@
     "main": "index.js",
     "repository": "git@github.com:robrunodev/find-a-friend-api.git",
     "author": "Rodrigo Bruno <ro_web1@hotmail.com>",
+    "_moduleAliases": {
+        "@/*": "./src/*"
+    },
     "scripts": {
         "dev": "tsx watch src/server.ts"
     },
@@ -29,7 +32,7 @@
         "eslint-plugin-promise": "6.2.0",
         "eslit": "6.0.0",
         "prettier": "3.3.2",
-        "prisma": "5.15.1",
+        "prisma": "5.16.1",
         "tsup": "8.1.0",
         "tsx": "4.15.7",
         "typescript": "5.5.2",

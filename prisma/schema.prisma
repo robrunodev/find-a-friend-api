@@ -29,37 +29,80 @@ enum SpecieType {
     DOG
 }
 
+enum Role {
+    USER
+    MEMBER
+    ADMIN
+}
+
 model Pet {
-    id          String     @id @default(uuid())
-    name        String
-    created_at  DateTime   @default(now())
-    about       String
-    age         Int
-    size        Size
-    gender      Gender
-    speciesType SpecieType
-    Org         Org        @relation(fields: [orgId], references: [id])
-    orgId       String
+    id             String       @id @default(uuid())
+    name           String
+    created_at     DateTime     @default(now())
+    about          String
+    age            Int
+    size           Size
+    gender         Gender
+    speciesType    SpecieType
+    Organization   Organization @relation(fields: [organizationId], references: [id])
+    organizationId String
+    User           User?        @relation(fields: [userId], references: [id])
+    userId         String?
 
     @@map("pets")
 }
 
-model Org {
-    id           String   @id @default(uuid())
-    name         String
-    author_name  String
-    email        String   @unique
-    whatsapp     String
-    password     String
-    cep          String
-    state        String
-    city         String
-    neighborhood String
-    street       String
-    latitude     Decimal
-    longitude    Decimal
-    created_at   DateTime @default(now())
-    pets         Pet[]
+model Organization {
+    id                String             @id @default(uuid())
+    name              String
+    email             String             @unique
+    whatsapp          String
+    cep               String
+    state             String
+    city              String
+    neighborhood      String
+    street            String
+    latitude          Decimal
+    longitude         Decimal
+    created_at        DateTime           @default(now())
+    pets              Pet[]
+    User              User?              @relation(fields: [userId], references: [id])
+    userId            String?
+    PetOrganization   PetOrganization?   @relation(fields: [petOrganizationId], references: [id])
+    petOrganizationId String?
+    UserOrganization  UserOrganization[]
 
-    @@map("orgs")
+    @@map("organizations")
+}
+
+model UserOrganization {
+    Organization   Organization @relation(fields: [organizationId], references: [id])
+    organizationId String
+    User           User         @relation(fields: [userId], references: [id])
+    userId         String
+
+    @@id([organizationId, userId])
+}
+
+model PetOrganization {
+    id             String         @id @default(uuid())
+    organization   Organization[]
+    organizationId String
+
+    @@map("petOrganizations")
+}
+
+model User {
+    id               String             @id @default(uuid())
+    name             String
+    role             Role               @default(USER)
+    email            String             @unique
+    whatsapp         String
+    password         String
+    created_at       DateTime           @default(now())
+    organization     Organization[]
+    pets             Pet[]
+    UserOrganization UserOrganization[]
+
+    @@map("users")
 }

@@ -4,15 +4,17 @@ FindAFriend API
 
 ## Regras da aplicação
 
-- [ ] Deve ser possível se cadastrar como uma ORG
-- [ ] Deve ser possível realizar login como uma ORG
-- [ ] Deve ser possível cadastrar um pet
+- [ ] Deve ser possível se cadastrar usuário e definir sua role como Membro ou Admin
+- [ ] Deve possível usuário cadastrar uma ORG
+- [ ] Deve ser possível usuário realizar login
+- [ ] Deve ser possível cadastrar um pet em uma org
 - [ ] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
 - [ ] Deve ser possível filtrar pets por suas características
 - [ ] Deve ser possível visualizar detalhes de um pet para adoção
 
 ## Regras de negócio
 
+- [ ] Somente usuário ADMIN pode cadastrar ou editar uma ORG
 - [ ] Para listar os pets, obrigatoriamente precisamos informar a cidade
 - [ ] Uma ORG precisa ter um endereço e um número de WhatsApp
 - [ ] Um pet deve estar ligado a uma ORG
