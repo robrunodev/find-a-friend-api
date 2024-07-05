@@ -1,32 +1,38 @@
 {
   "env": {
-      "browser": true,
-      "es2021": true
+    "browser": true,
+    "es2021": true
   },
   "extends": [
-      "standard-with-typescript",
-      "@rocketseat/eslint-config/node",
-      "eslint-config-prettier"
+    "standard-with-typescript",
+    "@rocketseat/eslint-config/node",
+    "eslint-config-prettier"
   ],
   "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "plugins": [
-      "eslint-plugin-prettier"
+    "eslint-plugin-prettier"
   ],
   "rules": {
-      "prettier/prettier": [
-          "error",
-          {
-              "printWidth": 80,
-              "tabWidth": 2,
-              "singleQuote": true,
-              "trailingComma": "all",
-              "arrowParens": "always",
-              "semi": false,
-              "endOfLine": "auto"
-          }
-      ]
+    "@typescript-eslint/camelcase": "off",
+    "camelcase": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "tabWidth": 2,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "arrowParens": "always",
+        "semi": false,
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
