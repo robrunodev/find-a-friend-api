@@ -11,7 +11,8 @@
     "dev": "tsx watch src/server.ts",
     "test:create-prisma-environment": "npm link ./prisma/vitest-environment-prisma",
     "test:install-prisma-environment": "npm link vitest-environment-prisma",
-    "local:test": "vitest run --dir src/use-cases"
+    "local:in-memory-test": "vitest run --dir src/use-cases",
+    "local-watch:in-memory-test": "vitest dev --dir src/use-cases"
   },
   "license": "MIT",
   "dependencies": {
