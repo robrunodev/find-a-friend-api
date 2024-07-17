@@ -1,4 +1,4 @@
-import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error'
+import { EmailAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error'
 import { makeRegisterUseCase } from '@/use-cases/factories/make-register-user-case'
 import { type FastifyReply, type FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -28,7 +28,7 @@ export async function register(
       whatsapp,
     })
   } catch (err) {
-    if (err instanceof UserAlreadyExistsError) {
+    if (err instanceof EmailAlreadyExistsError) {
       return await reply.status(409).send(err.message)
     }
     return await reply.status(500)

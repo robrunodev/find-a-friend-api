@@ -57,6 +57,7 @@ model Organization {
   name              String
   email             String             @unique
   whatsapp          String
+  description       String            
   cep               String
   state             String
   city              String
