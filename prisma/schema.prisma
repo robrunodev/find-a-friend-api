@@ -57,7 +57,7 @@ model Organization {
   name              String
   email             String             @unique
   whatsapp          String
-  description       String            
+  description       String
   cep               String
   state             String
   city              String
@@ -72,6 +72,7 @@ model Organization {
   PetOrganization   PetOrganization?   @relation(fields: [petOrganizationId], references: [id])
   petOrganizationId String?
   UserOrganization  UserOrganization[]
+  password_hash     String
 
   @@map("organizations")
 }

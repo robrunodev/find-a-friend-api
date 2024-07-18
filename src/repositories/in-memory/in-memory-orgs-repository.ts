@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-base-to-string */
 import { Prisma, type Organization } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
-import { type OrgsRepository } from '../orgs-repository'
+import { type FindManyNearby, type OrgsRepository } from '../orgs-repository'
+import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates'
 
 export class InMemoryOrgsRepository implements OrgsRepository {
   public items: Organization[] = []
@@ -19,6 +20,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       neighborhood,
       state,
       street,
+      password_hash,
     } = data
 
     const org = {
@@ -37,6 +39,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       created_at: new Date(),
       userId: null,
       petOrganizationId: null,
+      password_hash,
     }
 
     this.items.push(org)
@@ -62,5 +65,27 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     }
 
     return org
+  }
+
+  async searchMany(query: string, page: number): Promise<Organization[]> {
+    const orgs = this.items
+      .filter((org) =>
+        org.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()),
+      )
+      .slice((page - 1) * 20, page * 20)
+
+    return orgs
+  }
+
+  async findManyNearBy(params: FindManyNearby): Promise<Organization[]> {
+    const { latitude, longitude } = params
+
+    return this.items.filter((item) => {
+      const distance = getDistanceBetweenCoordinates(
+        { latitude, longitude },
+        { latitude: Number(item.latitude), longitude: Number(item.longitude) },
+      )
+      return distance < 10
+    })
   }
 }

@@ -1,6 +1,7 @@
 import { type OrgsRepository } from '@/repositories/orgs-repository'
 import { type Organization } from '@prisma/client'
 import { EmailAlreadyExistsError } from './errors/user-already-exists-error'
+import { hash } from 'bcryptjs'
 
 interface CreateOrgRequest {
   name: string
@@ -14,6 +15,7 @@ interface CreateOrgRequest {
   latitude: number
   longitude: number
   description: string
+  password: string
 }
 
 interface CreateOrgResponse {
@@ -35,7 +37,10 @@ export class RegisterOrgUseCase {
     latitude,
     longitude,
     description,
+    password,
   }: CreateOrgRequest): Promise<CreateOrgResponse> {
+    const password_hash = await hash(password, 6)
+
     const orgWithSameEmail = await this.orgsRepository.findByEmail(email)
 
     if (orgWithSameEmail) {
@@ -54,6 +59,7 @@ export class RegisterOrgUseCase {
       latitude,
       longitude,
       description,
+      password_hash,
     })
 
     return { org }
