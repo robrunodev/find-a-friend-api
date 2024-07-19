@@ -1,14 +1,13 @@
 import { PrismaClient } from '@prisma/client'
-import { execSync } from 'node:child_process'
-import { randomUUID } from 'crypto'
 import 'dotenv/config'
-
-import { type Environment } from 'vitest'
+import { execSync } from 'node:child_process'
+import { randomUUID } from 'node:crypto'
+import { Environment } from 'vitest'
 
 const prisma = new PrismaClient()
 
-function generateDataBaseURL(schema: string): string {
-  if (process.env.DATABASE_URL == null) {
+function generateDataBaseURL(schema: string) {
+  if (!process.env.DATABASE_URL) {
     throw new Error('Please provide a DATABASE_URL environment variable')
   }
 
@@ -18,9 +17,10 @@ function generateDataBaseURL(schema: string): string {
   return url.toString()
 }
 
-export default {
+export default <Environment>{
   name: 'prisma',
   async setup() {
+
     const schema = randomUUID()
     const databaseURL = generateDataBaseURL(schema)
 
@@ -30,12 +30,10 @@ export default {
 
     return {
       async teardown() {
-        await prisma.$executeRawUnsafe(
-          `DROP SCHEMA IF EXISTS "${schema}" CASCADE`,
-        ) // Apagando o banco no final de todo o processo de testes
+        await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`) // Apagando o banco no final de todo o processo de testes
         await prisma.$disconnect()
-      },
+      }
     }
   },
-  transformMode: 'ssr',
-} satisfies Environment
+  transformMode: 'ssr'
+}

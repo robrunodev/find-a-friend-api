@@ -12,7 +12,7 @@ describe('Register user Controller', () => {
   it('should be able to register user', async () => {
     const response = await request(app.server).post('/users').send({
       name: 'Rodrigo Buena Vista',
-      email: 'rbuena@gmail.com',
+      email: 'rod@gmail.com',
       password: 'rodrigoBena123',
       whatsapp: '11980682343',
     })

@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import { env } from './env'
 import { usersRoutes } from './http/controllers/users/routes'
+import { organizationRoutes } from './http/controllers/orgs/routes'
 
 export const app = fastify()
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 app.register(usersRoutes)
+app.register(organizationRoutes)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {

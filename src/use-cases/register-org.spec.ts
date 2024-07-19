@@ -85,10 +85,7 @@ describe('Register Organization Use Case', () => {
       description: '',
     })
 
-    const isPasswordCorrectlyHashed = await compare(
-      '123456',
-      String(org.password_hash),
-    )
+    const isPasswordCorrectlyHashed = await compare('1234', org.password_hash)
 
     expect(isPasswordCorrectlyHashed).toBe(true)
   })
